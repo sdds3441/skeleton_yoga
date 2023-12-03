@@ -37,9 +37,10 @@ def cal_gesture(hand_joint):
     ret, results, neighbours, dist = knn.findNearest(joint_data, 3)
     idx = int(results[0][0])
 
+
     # Draw gesture result
     if idx in rps_gesture.keys():
-        action=rps_gesture[idx]
+        action=idx
 
     return action
 
@@ -61,7 +62,7 @@ file = np.genfromtxt('dataset//knn_data.csv', delimiter=',')
 angle = file[:, :-1].astype(np.float32)
 label = file[:, -1].astype(np.float32)
 knn.train(angle, cv2.ml.ROW_SAMPLE, label)
-cap = cv2.VideoCapture("C://Users//김효찬//Desktop//수업//3학년//2학기//AI프로그래밍//archive//dataset//test//Bhujasana//video 13.mp4")
+cap = cv2.VideoCapture("C://Users//김효찬//Desktop//수업//3학년//2학기//인공지능프로그래밍//yoga//taekgwon//2023-12-03-160714.webm")
 cap.set(3, width)
 cap.set(4, height)
 
@@ -102,7 +103,8 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
             joint = cal_extend_data(results.pose_landmarks)
             action = cal_gesture(joint)
         print(action)
-
+        data.append(action)
+        sock.sendto(str.encode(str(data)), serverAddressPort)
         cv2.imshow('Raw Webcam Feed', image)
 
         terminate_t = timeit.default_timer()
