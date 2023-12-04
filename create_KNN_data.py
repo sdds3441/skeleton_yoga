@@ -53,7 +53,7 @@ rps_gesture = {0: 'Bhujasana', 1: 'Padamasana', 2: 'Tadasana', 3: 'Trikasana', 4
 width = 1280
 height = 720
 
-cap = cv2.VideoCapture("C://Users//김효찬//Desktop//수업//3학년//2학기//AI프로그래밍//archive//dataset//highlight//Standing//video 1.mp4")
+cap = cv2.VideoCapture("C://Users//김효찬//Desktop//수업//3학년//2학기//인공지능프로그래밍//yoga//highlight//Trikasana//video 3.mp4")
 cap.set(3, width)
 cap.set(4, height)
 
@@ -98,7 +98,7 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
                 # print(counter)
 
                 else:
-                    angle = np.append(angle, pos_idx)
+                    angle = np.append(angle, 3)
                     angle = np.expand_dims(angle, axis=0)
                     if first:
                         angle_data = angle
@@ -111,7 +111,7 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
                 print(sec, counter)
             cv2.imshow('Raw Webcam Feed', image)
             if cv2.waitKey(1) & 0xFF == ord('q') or sec == 2:
-                np.savetxt("dataset//Standing.csv", angle_data, delimiter=",", fmt="%.5f")
+                np.savetxt("dataset//Bhujasana.csv", angle_data, delimiter=",", fmt="%.5f")
                 exit()
                 print('저장끝')
                 break

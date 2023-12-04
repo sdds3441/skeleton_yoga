@@ -62,7 +62,7 @@ file = np.genfromtxt('dataset//knn_data.csv', delimiter=',')
 angle = file[:, :-1].astype(np.float32)
 label = file[:, -1].astype(np.float32)
 knn.train(angle, cv2.ml.ROW_SAMPLE, label)
-cap = cv2.VideoCapture("C://Users//김효찬//Desktop//수업//3학년//2학기//인공지능프로그래밍//yoga//taekgwon//2023-12-03-160714.webm")
+cap = cv2.VideoCapture("C://Users//김효찬//Desktop//수업//3학년//2학기//인공지능프로그래밍//yoga//highlight//Standing//video 12.mp4")
 cap.set(3, width)
 cap.set(4, height)
 
